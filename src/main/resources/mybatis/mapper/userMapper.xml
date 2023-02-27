@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.mapper.userMapper">
+
+    <select id="oneProject" parameterType="java.lang.String" resultType="project">
+        select userName,projectName,money,`explain`,status from project
+        where projectName = #{projectName};
+    </select>
+
+    <update id="reduceMoney" parameterType="map">
+        update user
+        set money = money - #{money}
+        where username = #{username};
+    </update>
+
+    <update id="addProjectGetMoney" parameterType="map">
+        update project
+        set getMoney = getMoney + #{getMoney}
+        where projectName = #{projectName};
+    </update>
+
+    <update id="addMoney" parameterType="map">
+        update user
+        set money = money + #{money}
+        where username = #{username};
+    </update>
+
+</mapper>

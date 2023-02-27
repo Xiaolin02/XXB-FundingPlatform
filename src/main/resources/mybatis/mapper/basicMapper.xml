@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.mapper.basicMapper">
+
+    <select id="queryUsernameList" resultType="java.lang.String">
+        select username from user;
+    </select>
+
+    <insert id="addUser" parameterType="user">
+        insert into user (username, password, money, isCertified)
+        values (#{username}, #{password}, #{money}, #{isCertified});
+    </insert>
+
+    <select id="queryUser" parameterType="java.lang.String" resultType="user">
+        select username, password, money, isCertified from user where username = #{username};
+    </select>
+
+    <update id="certify" parameterType="java.lang.String">
+        update user set isCertified = 1 where username = #{username};
+    </update>
+
+    <select id="search" parameterType="java.lang.String" resultType="java.lang.String">
+        select projectName from project where projectName like concat('%',#{key},'%');
+    </select>
+
+    <select id="queryAdminList" resultType="java.lang.String">
+        select adminName from admin;
+    </select>
+
+    <select id="queryAdmin" parameterType="java.lang.String" resultType="admin">
+        select adminName, password from admin where adminName = #{adminName};
+    </select>
+
+    <select id="queryProjectNameList" resultType="java.lang.String">
+        select projectName from project;
+    </select>
+
+</mapper>

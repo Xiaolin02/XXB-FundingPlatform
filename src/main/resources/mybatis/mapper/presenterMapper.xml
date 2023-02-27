@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.mapper.presenterMapper">
+
+    <insert id="release" parameterType="map">
+        insert into `projects-to-be-reviewed` (projectName, money, `explain`, userName)
+        values (#{projectName}, #{money}, #{explain}, #{userName});
+    </insert>
+
+    <select id="released" parameterType="java.lang.String" resultType="java.lang.String">
+        select projectName from project where userName = #{username} and status = 'released';
+    </select>
+
+    <select id="review" parameterType="java.lang.String" resultType="java.lang.String">
+        select projectName from project where userName = #{username} and status = 'review';
+    </select>
+
+    <select id="failed" parameterType="java.lang.String" resultType="java.lang.String">
+        select projectName from project where userName = #{username} and status = 'failed';
+    </select>
+
+    <select id="check" parameterType="map" resultType="project">
+        select userName,projectName,money,`explain`,status,getMoney from project
+        where userName = #{username} and projectName = #{projectName};
+    </select>
+
+    <select id="queryProjectNameList" resultType="java.lang.String">
+        select projectName from `projects-to-be-reviewed`;
+    </select>
+
+</mapper>
