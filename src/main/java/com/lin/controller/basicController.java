@@ -89,7 +89,7 @@ public class basicController {
             map.put("msg", "手机号错误");
             return JSON.toJSONString(map);
         } else {
-            //service.certify(username);
+            service.certify((String) tokenUtil.parseToken(Authorization).get("username"));
             map.put("msg", "修改成功");
             return JSON.toJSONString(map);
         }
